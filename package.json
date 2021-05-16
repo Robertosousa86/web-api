@@ -1,0 +1,20 @@
+{
+  "name": "web-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robertosousa86/web-api.git"
+  },
+  "keywords": [],
+  "author": "Roberto Sousa <robertosousa186@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Robertosousa86/web-api/issues"
+  },
+  "homepage": "https://github.com/Robertosousa86/web-api#readme"
+}
