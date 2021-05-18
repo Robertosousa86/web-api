@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Robertosousa86/web-api/issues"
   },
-  "homepage": "https://github.com/Robertosousa86/web-api#readme"
+  "homepage": "https://github.com/Robertosousa86/web-api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
