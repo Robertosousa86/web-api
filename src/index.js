@@ -25,7 +25,7 @@ http
     const key = `/${route}:${method.toLowerCase()}`;
 
     response.writeHead(200, DEFAULT_HEADER);
-
+    //  se mandar rota que não existe devolve default
     const chosen = routes[key] || routes.default;
     return chosen(request, response);
 
