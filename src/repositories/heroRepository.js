@@ -12,7 +12,7 @@ class HeroRepository {
   // Retorna os dados(JSON) a partir do Id
   async find(itemId) {
     const all = await this._currentFileContent();
-    if (!itemId) return "not found";
+    if (!itemId) return all;
 
     return all.find(({ id }) => itemId === id);
   }
