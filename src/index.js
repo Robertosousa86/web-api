@@ -17,32 +17,51 @@ const routes = {
   },
 
   "/heroes:post": async (request, response) => {
-    // async interator
+    // entende como outro contexto, entao erro aqui dentro nao é pego pelo contexto maior
     for await (const data of request) {
-      const item = JSON.parse(data);
-      const hero = new Hero(item);
-      const { error, valid } = hero.isValid();
-      if (!valid) {
-        response.writeHead(400, DEFAULT_HEADER);
-        response.write(JSON.stringify({ error: error.join(", ") }));
-        return response.end();
-      }
+      try {
+        // await Promise.reject('erro!!!')
+        const item = JSON.parse(data);
+        const hero = new Hero(item);
+        const { valid, error } = hero.isValid();
+        if (!valid) {
+          response.writeHead(400, DEFAULT_HEADER);
+          response.write(JSON.stringify({ error: error.join(",") }));
 
-      const id = await heroService.create(hero);
-      response.writeHead(201, DEFAULT_HEADER);
-      response.write(
-        JSON.stringify({ success: "Hero created with success!", id })
-      );
-      // se fosse um arquive que sobre sob demanda, 
-      // ele poderia entrar mais vezes em um mesmo evento, nesse caso removeriamos o return
-      return response.end();
+          return response.end();
+        }
+
+        const id = await heroService.create(hero);
+
+        response.writeHead(201, DEFAULT_HEADER);
+        response.write(
+          JSON.stringify({ success: "User Created has succeeded!", id })
+        );
+
+        // só jogamos o retorno pois sabemos que é um objeto body por requisicao
+        // se fosse um arquivo, ele poderia chamar mais de uma vez, aí removeriamos o return
+        return response.end();
+      } catch (error) {
+        return handleError(response)(error);
+      }
     }
   },
+
   default: (request, response) => {
     response.write("HELLO\n");
 
     response.end();
   },
+};
+//closure
+const handleError = (response) => {
+  return (error) => {
+    console.error("Ops... Ocorreu um erro", error);
+    response.writeHead(500, DEFAULT_HEADER);
+    response.write(JSON.stringify({ error: "Internal Server Error!" }));
+
+    return response.end();
+  };
 };
 
 http
@@ -57,7 +76,8 @@ http
     response.writeHead(200, DEFAULT_HEADER);
     //  se mandar rota que não existe devolve default
     const chosen = routes[key] || routes.default;
-    return chosen(request, response);
+    // usa catch porque todas as rotas usam promise
+    return chosen(request, response).catch(handleError(response));
 
     // response.end();
   })

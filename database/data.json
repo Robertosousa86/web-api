@@ -1,8 +1,1 @@
-[
-  {
-    "id": 1,
-    "name": "Draco",
-    "age": 400,
-    "attribute": "strength"
-  }
-]
+[{ "id": 1, "name": "Draco", "age": 400, "attribute": "strength" }]
