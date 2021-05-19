@@ -33,7 +33,8 @@ const routes = {
       response.write(
         JSON.stringify({ success: "Hero created with success!", id })
       );
-
+      // se fosse um arquive que sobre sob demanda, 
+      // ele poderia entrar mais vezes em um mesmo evento, nesse caso removeriamos o return
       return response.end();
     }
   },
