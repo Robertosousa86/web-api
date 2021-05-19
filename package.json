@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "npx nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "sh script.sh"
   },
   "repository": {
     "type": "git",
