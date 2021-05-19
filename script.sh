@@ -1,6 +1,5 @@
-echo 'Request all heroes'
+echo '\n\n Request all heroes'
 curl localhost:3000/heroes
 
-echo 'Request flash(by id)'
+echo ' \n\n Request by id'
 curl localhost:3000/heroes/1
-
