@@ -27,6 +27,7 @@ class Hero {
 
 module.exports = Hero;
 
+/*
 const hero = new Hero({
   age: 300,
   name: "Leão",
@@ -35,3 +36,4 @@ const hero = new Hero({
 
 console.log("Valid", hero.isValid());
 console.log("Valid", hero);
+*/
