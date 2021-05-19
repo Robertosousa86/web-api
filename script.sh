@@ -10,6 +10,13 @@ curl --silent -X POST \
 localhost:3000/heroes
 
 echo '\n\ncreating Leão'
-curl --silent -X POST \
+CREATE=$(curl --silent -X POST \
 --data-binary '{"name": "Leao", "age": 100, "attribute": "intelligence"}' \
-localhost:3000/heroes
+localhost:3000/heroes)
+
+echo $CREATE
+
+ID=$(echo $CREATE | jq .id)
+
+echo ' \n\nRequest by id'
+curl localhost:3000/heroes/$ID
